@@ -13,7 +13,7 @@ app.use((req, res, next) => {
   next();
 });
 app.use(bodyParser.json())
-mongoose.connect('mongodb+srv://new_user17:user17@cluster0.snhak.mongodb.net/test',
+mongoose.connect(`mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_PASS}@cluster0.snhak.mongodb.net/test`,
   { useNewUrlParser: true,
     useUnifiedTopology: true })
   .then(() => console.log('Connexion à MongoDB réussie !'))
