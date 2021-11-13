@@ -1,9 +1,31 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-
-const userCtrl = require('../controllers/user');
-
-router.post('/signup', userCtrl.signup);
-router.post('/login', userCtrl.login);
-
+const valid = require("../middleware/validator");
+const userCtrl = require("../controllers/user");
+//Express Validator va vérifier les données contenu dans le champ "body"
+const { body } = require("express-validator");
+//CRUD Users avec vérifications des saisies via Express-validator
+router.post(
+  "/signup",
+  body("email").isEmail().withMessage("must be a valid email"),
+  body("password")
+    .isLength({ min: 5 })
+    .withMessage("must be at least 5 chars long")
+    .matches(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/)
+    .withMessage("must contain at least eight characters, including at least one number and includes both lower and uppercase letters and special characters"),
+  valid,
+  userCtrl.signup
+);
+router.post(
+  "/login",
+  body("email").isEmail().withMessage("must be a valid email"),
+  body("password")
+    .isLength({ min: 5 })
+    .withMessage("must be at least 5 chars long")
+    .matches(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/)
+    .withMessage("must contain at least eight characters, including at least one number and includes both lower and uppercase letters and special characters"),
+  valid,
+  userCtrl.login
+);
+//Exports des routes users
 module.exports = router;
