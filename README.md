@@ -6,7 +6,7 @@ sur l'application et de "like" ou "dislike" un produit posté par d'autres utili
 Les utilisateurs doivent être authentifiés pour accéder à la galerie de sauce et toutes les routes de l'API doivent être sécurisées.
 
 <p align="center">
-<img src="./Frontend/assets/readme_image.png">
+<img src="./Frontend/assets/images/readme_image.png">
 </p>
 
 ### Pré-requis
