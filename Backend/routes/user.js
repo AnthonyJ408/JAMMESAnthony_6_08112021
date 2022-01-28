@@ -9,8 +9,6 @@ router.post(
   "/signup",
   body("email").isEmail().withMessage("must be a valid email"),
   body("password")
-    .isLength({ min: 5 })
-    .withMessage("must be at least 5 chars long")
     .matches(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/)
     .withMessage("must contain at least eight characters, including at least one number and includes both lower and uppercase letters and special characters"),
   valid,
@@ -20,8 +18,6 @@ router.post(
   "/login",
   body("email").isEmail().withMessage("must be a valid email"),
   body("password")
-    .isLength({ min: 5 })
-    .withMessage("must be at least 5 chars long")
     .matches(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/)
     .withMessage("must contain at least eight characters, including at least one number and includes both lower and uppercase letters and special characters"),
   valid,
